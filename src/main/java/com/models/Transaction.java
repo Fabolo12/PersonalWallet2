@@ -2,7 +2,7 @@ package com.models;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -18,8 +18,6 @@ public class Transaction {
     private final long centsAmount;
 
     private final LocalDateTime timestamp;
-
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss yyyy-MM-dd");
 
     public Transaction(
             final TransactionType type,
@@ -51,7 +49,7 @@ public class Transaction {
         this.category = category;
         this.description = description;
         this.centsAmount = checkAmount(centsAmount);
-        this.timestamp = normilizeTimestamp(timestamp);
+        this.timestamp = normalizeTimestamp(timestamp);
     }
 
     public UUID getId() {
@@ -85,10 +83,9 @@ public class Transaction {
         return centsAmount;
     }
 
-    private LocalDateTime normilizeTimestamp(final LocalDateTime timestamp) {
+    private LocalDateTime normalizeTimestamp(final LocalDateTime timestamp) {
         final LocalDateTime dateTime = timestamp == null ? LocalDateTime.now(ZoneId.systemDefault()) : timestamp;
-        final String format = dateTime.format(FORMATTER);
-        return LocalDateTime.parse(format, FORMATTER);
+        return dateTime.truncatedTo(ChronoUnit.SECONDS);
     }
 
     @Override
