@@ -3,7 +3,7 @@ package com.tests;
 import com.models.Category;
 import com.models.Transaction;
 import com.models.TransactionType;
-import com.ui.TransactionMapper;
+import com.mappers.TransactionMapper;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

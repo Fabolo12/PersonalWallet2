@@ -1,4 +1,4 @@
-package com.ui;
+package com.mappers;
 
 import com.models.Category;
 import com.models.Transaction;

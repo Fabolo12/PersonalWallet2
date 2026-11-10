@@ -1,9 +1,9 @@
 package com;
 
-import java.time.LocalDateTime;
+import com.ui.Console;
 
 public class Main {
-    static void main() {
-        System.out.println(LocalDateTime.now());
+    static void main(String[] args) {
+        new Console().show();
     }
 }
